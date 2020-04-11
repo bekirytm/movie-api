@@ -69,7 +69,7 @@ router.put('/:movie_id' , (req,res,next) => {
 
 // ****** YENİ FİLM OLUŞTURMA ******
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res) => {
 
   // YENİ YÖNTEM (Burada karşıdan gelen verileri req ile aldık ve promise ile kaydettik.)
 
