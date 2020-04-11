@@ -12,5 +12,6 @@ module.exports = () => {
       console.log("MongoDB : ERROR " , err);
   });
 
+  // Buradaki yapının nedeni rout işlemlerimizden dönen verileri promise ile kullanabilmek.
   mongoose.Promise = global.Promise;
 };

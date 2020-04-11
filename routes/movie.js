@@ -26,6 +26,7 @@ router.get('/' , (req,res) => {
 
 // ****** ID' ye GÖRE ARAMA YAPMA ****** (movie_id bazlı arama)
 // AÇIKLAMA : Burada film id'lerine göre arama yaptık ve o id'ye sahip filmi getirdik.
+// NOT : endpoint'ten gelen değerleri req.params ile alabiliriz. (:)
 
 router.get('/:movie_id' , (req,res,next) => {
   const promise = Movie.findById(req.params.movie_id);
@@ -52,13 +53,13 @@ router.put('/:movie_id' , (req,res,next) => {
 
   promise.then((data) => {
     if(!data){
-      next({ message:  " The movie was not found ." , code : 108 });
+      next({ message:  " The movie was not found. Update failed." , code : 108 });
     }else{
       res.json(data);
     }
   }).catch((err) => {
     res.json(err);
-  })
+  });
 
 });
 
