@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Director Şeması :
+
 const DirectorSchema = new Schema({
     name : String,
     surname : String,

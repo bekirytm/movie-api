@@ -4,6 +4,7 @@ const router = express.Router();
 // Models
 const Director = require('../models/Director');
 
+// Yeni Kayıt Ekleme :
 router.post('/', (req, res, next) =>  {
 
   const director = new Director(req.body);
