@@ -39,6 +39,23 @@ router.get('/top10' , (req,res) => {
 
 
 
+// BETWEEN / İki yıl arası arama
+// Burada iki yıl arasındaki filmleri bulmamızı sağlar. NOT: gte ve lte arasında anlamında e(<=) harfi o yılı da alır.  (gte : >= /  gt : > )
+router.get('/between/:start_year/:end_year' , (req,res) =>{
+
+  const { start_year,end_year } = req.params;
+  const promise = Movie.find({
+    year: { "$gte" : parseInt(start_year) , "$lte" : parseInt(end_year) }    //Burada gte ve lte büyük eşit - küçük eşit anlamında. (e harfi eşiti kapsar.)
+  });
+
+  promise.then((data) => {
+    res.json(data);
+  }).catch((err) => {
+    res.json(err);
+  })
+});
+
+
 
 
 
