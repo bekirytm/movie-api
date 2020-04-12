@@ -24,6 +24,24 @@ router.get('/' , (req,res) => {
 });
 
 
+// TOP 10 LİSTESİ
+// En yüksek IMDB puanına sahip ilk 10 filmi getirir.  (Burada önemli olan ıd bazlı get isteğinin önünde olmalı olması)
+
+router.get('/top10' , (req,res) => {
+  const promise = Movie.find({}).limit(10).sort({imdb_score: -1});
+
+  promise.then((data) => {
+    res.json(data);
+  }).catch((err)=>{
+    res.json(err);
+  });
+});
+
+
+
+
+
+
 // ****** ID' ye GÖRE ARAMA YAPMA ****** (movie_id bazlı arama)
 // AÇIKLAMA : Burada film id'lerine göre arama yaptık ve o id'ye sahip filmi getirdik.
 // NOT : endpoint'ten gelen değerleri req.params ile alabiliriz. (:)
