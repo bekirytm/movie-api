@@ -46,10 +46,17 @@ router.get('/:movie_id' , (req,res,next) => {
 });
 
 
+
 // ****** GÜNCELLEME İŞLEMİ ******
 // Burada istenilen filme ait değişiklikler , güncellemeler yaptık.
 router.put('/:movie_id' , (req,res,next) => {
-  const promise = Movie.findByIdAndUpdate( req.params.movie_id , req.body );   // hangi kayıt , hangi değişiklikler
+  const promise = Movie.findByIdAndUpdate(
+      req.params.movie_id,
+      req.body,                 // hangi kayıt , hangi değişiklikler
+      {
+        new : true              //Güncelleme yaptıktan sonra güncellenen objeyi dönmesini sağlar.(Normalde eski değer dönüyordu.)
+      }
+  );
 
   promise.then((data) => {
     if(!data){
@@ -65,6 +72,24 @@ router.put('/:movie_id' , (req,res,next) => {
 
 
 
+// ****** ID BAZLI SİLME İŞLEMİ ******
+// Burada id bazlı silme işlemi yaptık.Film id'lerine göre film kaydını sildik.
+
+router.delete('/:movie_id' , (req,res,next) => {
+  const promise = Movie.findByIdAndRemove(req.params.movie_id);
+
+  promise.then((data) => {
+    if(!data){
+      next({ message : "The movie was not found.Delete failed. ", code : 107});
+    }else{
+      res.json({ status : 1});
+    }
+  }).catch((err) => {
+    res.json(err);
+  });
+});
+
+
 
 
 // ****** YENİ FİLM OLUŞTURMA ******
@@ -73,7 +98,7 @@ router.post('/', (req, res) => {
 
   // YENİ YÖNTEM (Burada karşıdan gelen verileri req ile aldık ve promise ile kaydettik.)
 
-  const movie = new Movie(req.body);
+  const movie = new Movie(req.body);  // req.body (post'tan (karşıdan) gelen verilerdir)
   // Burada Promise Yapısını Kullanmamız daha mantıklı ve uygun.
   const promise = movie.save();
   promise.then(() => {
