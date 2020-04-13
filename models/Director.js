@@ -14,4 +14,4 @@ const DirectorSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('director', DirectorSchema)
+module.exports = mongoose.model('director', DirectorSchema);
