@@ -20,6 +20,19 @@ router.post('/', (req, res) =>  {
 });
 
 
+// Bütün Direktörleri Getirme :
+router.get('/' , (req,res) => {
+  const promise = Director.find({});
+
+  promise.then((data) => {
+    res.json(data);
+  }).catch((err) => {
+    res.json(err);
+  });
+});
+
+
+
 
 
 module.exports = router;
