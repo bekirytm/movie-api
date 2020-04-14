@@ -20,17 +20,58 @@ router.post('/', (req, res) =>  {
 });
 
 
-// Bütün Direktörleri Getirme :
 router.get('/' , (req,res) => {
-  const promise = Director.find({});
+  const promise = Director.aggregate([
+    {
+      // Burada Join işlemi yapılır.(Bağlama)
+      $lookup: {
+          from : 'movies',
+          localField : '_id',
+          foreignField : 'director_id',
+          as : 'movies'
+      }
+    },
+    {
+      // Yukarıdaki bağlantıyı kullanabilmek için .
+      $unwind : {
+        path : '$movies',
+        preserveNullAndEmptyArrays : true    // Bunun anlamı yönetmenin filmi olmasa da göster.
+      }
+    },
+    {
+      //Bir Yönetmene ait tüm filmleri beraber göstermesi için.
+      $group:{
+        _id: {
+          _id : '$_id',
+          name : '$name',
+          surname : '$surname',
+          bio : '$bio'
+        },
+        movies : {
+          $push : '$movies'
+        }
+      }
+    },
+    {
+      // Gösterme işleminde id yazmasın diye.
+      $project : {
+        _id : '$_id._id',
+        name : '$_id.name',
+        surname : '$_id.surname',
+        movies : '$movies'
+      }
+    }
+
+
+  ]);
 
   promise.then((data) => {
     res.json(data);
   }).catch((err) => {
     res.json(err);
   });
-});
 
+});
 
 
 
