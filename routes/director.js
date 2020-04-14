@@ -149,13 +149,30 @@ router.put('/:director_id' , (req,res,next) => {
 
   promise.then((director) => {
     if(!director){
-      next({ message:  " The movie was not found. Update failed." , code : 108 });
+      next({ message:  " The Director was not found. Update failed." , code : 108 });
     }else{
       res.json(director);
     }
   }).catch((err) => {
     res.json(err);
   });
+});
+
+
+// Yönetmen Silme İşlemi : (DELETE)
+router.delete('/:director_id' , (req,res,next) => {
+  const promise = Director.findByIdAndRemove(req.params.director_id);
+
+  promise.then((data) => {
+    if(!data){
+      next({ message : "The Director was not found.Delete failed. ", code : 107});
+    }else{
+      res.json({ status : 1});
+    }
+  }).catch((err) => {
+    res.json(err);
+  });
+
 });
 
 
