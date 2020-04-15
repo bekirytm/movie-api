@@ -12,8 +12,21 @@ const Movie = require('../models/Movie');
 // ****** BÜTÜN FİLMLERİ GETİRME *******
 // AÇIKLAMA : Burada db'ye kayıtlı tüm filmleri getiren endpoint'i yaptık.
 
+//Düzenleme : Artık filmlerin yönetmenleri de eklendi.
 router.get('/' , (req,res) => {
-  const promise = Movie.find({});
+  const promise = Movie.aggregate([
+    {
+      $lookup : {
+        from: 'directors',
+        localField : 'director_id',
+        foreignField : '_id',
+        as : 'director'
+      }
+    },
+    {
+      $unwind : '$director'
+    }
+  ]);
 
   promise.then((data) => {
     res.json(data);
@@ -74,7 +87,6 @@ router.get('/:movie_id' , (req,res,next) => {
     }else {
       res.json(data);
     }
-
   }).catch((err) => {
     res.json(err);
   })
