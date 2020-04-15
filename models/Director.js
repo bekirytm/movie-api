@@ -6,8 +6,8 @@ const Schema = mongoose.Schema;
 const DirectorSchema = new Schema({
     name : {
         type: String,
-        maxlength : 60,
-        minlength : 2
+        maxlength : [60 , ' (`{PATH}`) alanı en fazla (`{MAXLENGTH}`) karakterden oluşabilir.'],
+        minlength : [2 , '(`{PATH}`) alanı en az (`{MINLENGTH}`) karakterden oluşabilir.']
     },
     surname : {
         type: String,
@@ -17,7 +17,7 @@ const DirectorSchema = new Schema({
     bio : {
         type: String,
         maxlength : 1000,
-        minlength : 50
+        minlength : [10 , 'Bu alan en az ({MINLENGTH}) karakterden oluşmalıdır.']
     },
     createAt : {
         type: Date,
