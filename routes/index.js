@@ -27,8 +27,39 @@ router.post('/register' , (req,res,next) => {
 });
 
 
-router.get('/pass' , (req,res) => {
+router.post('/authenticate' , (req,res) => {
+  const { username , password } = req.body;
+
+  User.findOne({
+    username
+  } , (err , user) => {
+    if(err){
+      throw err;
+    }
+
+    if(!user){
+      res.json({
+        status : false ,
+        message : 'Autentication failed , user not found. '
+      });
+    }
+    else{
+      bcrypt.compare(password , user.password).then((result) => {
+        if(!result){
+          res.json({
+            status : false  ,
+            message : 'Authentication failed , wrong password'
+          })
+        }
+        else{
+
+        }
+      });
+    }
+  });
 
 });
+
+
 
 module.exports = router;
