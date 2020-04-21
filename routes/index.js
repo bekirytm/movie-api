@@ -60,7 +60,7 @@ router.post('/authenticate' , (req,res) => {
           });
         }
         else{
-          // Şifre Krşılaştırma başarılı ise Token Oluşturma:
+          // Şifre Karşılaştırma başarılı ise Token Oluşturma:
           const payload = {
             username
           };
