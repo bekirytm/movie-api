@@ -32,6 +32,7 @@ router.post('/register' , (req,res,next) => {
 });
 
 
+// KİMLİK DOĞRULAMA :
 router.post('/authenticate' , (req,res) => {
   const { username , password } = req.body;
 

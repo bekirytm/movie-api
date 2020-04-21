@@ -5,7 +5,7 @@ module.exports = (req,res,next) => {
 
 
   if(token){
-      jwt.verify(token , req.app.get('api-secret_key') , (err , decoded) => {
+      jwt.verify(token , req.app.get('api_secret_key') , (err , decoded) => {
          if(err){
              res.json({
                  status : false,
@@ -19,7 +19,7 @@ module.exports = (req,res,next) => {
       });
   }
   else{
-      res.josn({
+      res.json({
          status : false,
          message : 'No token Provided'
       });
