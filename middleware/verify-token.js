@@ -14,6 +14,8 @@ module.exports = (req,res,next) => {
          }
          else{
             req.decode = decoded;
+            // İstek gönderen bilgisini verir.
+            console.log(decoded);
             next();
          }
       });
