@@ -11,6 +11,12 @@ const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 
 
+router.get('/' , (req,res,next) => {
+  res.render('index' , { title: 'Express' });
+});
+
+
+
 // KAYIT OLMA
 router.post('/register' , (req,res,next) => {
   const { username , password } = req.body;
