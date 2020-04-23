@@ -20,3 +20,15 @@ describe('Node Server' , () => {
 });
 
 
+// TEMİZ HALİ
+// describe('Node Server' , () => {
+//    it('(GET /) anasayfayı döndürür.' , (done) => {
+//        chai.request(server)
+//            .get('/')
+//            .end((err,res) => {
+//                res.should.have.status(200);
+//                done();
+//            })
+//
+//    });
+// });
