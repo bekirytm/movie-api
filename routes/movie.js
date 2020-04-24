@@ -149,8 +149,8 @@ router.post('/', (req, res) => {
   const movie = new Movie(req.body);  // req.body (post'tan (karşıdan) gelen verilerdir)
   // Burada Promise Yapısını Kullanmamız daha mantıklı ve uygun.
   const promise = movie.save();
-  promise.then(() => {
-    res.json({ status : 1 });
+  promise.then((data) => {
+    res.json(data);
   }).catch((err) => {
     res.json(err);
   });
