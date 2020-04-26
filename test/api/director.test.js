@@ -69,6 +69,24 @@ describe('/api/directors tests' , () => {
 
 
     // director_id ile Arama işlemi Testi
-    
+    describe('/GET/:director_id director search' , () => {
+       it('/it should GET director by the id' , (done) => {
+          chai.request(server)
+              .get('/api/directors/' + director_id_test)
+              .set('x-access-token' , token)
+              .end((err,res) => {
+                 res.should.have.status(200);
+                 res.body.should.be.a('array');
+                 res.body[0].should.have.property('name');
+                 res.body[0].should.have.property('surname');
+                 res.body[0].should.have.property('_id').eql(director_id_test);
+
+                 done();
+              });
+       });
+    });
+
+
+    //
 
 });
