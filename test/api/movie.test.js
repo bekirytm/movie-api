@@ -34,7 +34,6 @@ describe('/api/movies tests ' , () => {
     });
 
 
-
    // Burada da film ekleme işlemi testi yapıyoruz.
    describe('/POST movie test' , () => {
        it('it should POST a movie' , (done)=> {
