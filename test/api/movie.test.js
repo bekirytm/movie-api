@@ -68,7 +68,7 @@ describe('/api/movies tests ' , () => {
    });
 
 
-   // director_id ile Film arama testi
+   // movie_id ile Film arama testi
     describe('/GET/:movie_id movie' , ()=> {
        it('it should Get  movie by the id' , (done) => {
           chai.request(server)
