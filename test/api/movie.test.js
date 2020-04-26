@@ -92,7 +92,7 @@ describe('/api/movies tests ' , () => {
     });
 
 
-    // Put işlemi testleri :
+    // PUT işlemi testleri :
     describe('/PUT/director_id movie test' , () => {
         it('it should UPDATE a movie given by id' , (done)=> {
             const movie = {
@@ -118,6 +118,25 @@ describe('/api/movies tests ' , () => {
                     res.body.should.have.property('country').eql(movie.country);
                     res.body.should.have.property('year').eql(movie.year);
                     res.body.should.have.property('imdb_score').eql(movie.imdb_score);
+
+                    done();
+                });
+        });
+
+    });
+
+
+    // DELETE işlemi testi :
+    describe('/DELETE/director_id movie test' , () => {
+        it('it should DELETE a movie given by id' , (done)=> {
+
+            chai.request(server)
+                .delete('/api/movies/' + movieId)
+                .set('x-access-token' , token)
+                .end((err,res) => {
+                    res.should.have.status(200);
+                    res.body.should.be.a('object');
+                    res.body.should.have.property('status').eql(1);
 
                     done();
                 });
