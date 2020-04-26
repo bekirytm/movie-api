@@ -69,7 +69,7 @@ describe('/api/movies tests ' , () => {
 
 
    // director_id ile Film arama testi
-    describe('/GET/:director_id movie' , ()=> {
+    describe('/GET/:movie_id movie' , ()=> {
        it('it should Get  movie by the id' , (done) => {
           chai.request(server)
               .get('/api/movies/' + movieId)
@@ -92,7 +92,7 @@ describe('/api/movies tests ' , () => {
 
 
     // PUT işlemi testleri :
-    describe('/PUT/director_id movie test' , () => {
+    describe('/PUT/movie_id movie test' , () => {
         it('it should UPDATE a movie given by id' , (done)=> {
             const movie = {
                 title : "93creative",
@@ -126,7 +126,7 @@ describe('/api/movies tests ' , () => {
 
 
     // DELETE işlemi testi :
-    describe('/DELETE/director_id movie test' , () => {
+    describe('/DELETE/movie_id movie test' , () => {
         it('it should DELETE a movie given by id' , (done)=> {
 
             chai.request(server)
