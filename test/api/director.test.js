@@ -87,6 +87,31 @@ describe('/api/directors tests' , () => {
     });
 
 
-    //
+    // PUT İşlemi Testi
+    describe('/api/directors   PUT director' , () => {
+       it('it should UPDATE a mdirector given by id' , (done) => {
+           const directorTest = {
+               name : "Update Test",
+               surname : "Update Test",
+               bio : "Test Update bio "
+           };
+
+
+           chai.request(server)
+               .put('/api/directors/' + director_id_test)
+               .send(directorTest)
+               .set('x-access-token' , token)
+               .end((err,res) => {
+                   res.should.have.status(200);
+                   res.body.should.be.a('object');
+                   res.body.should.have.property('name').eql(directorTest.name);
+                   res.body.should.have.property('surname').eql(directorTest.surname);
+                   res.body.should.have.property('bio').eql(directorTest.bio);
+
+                   done();
+               });
+
+       });
+    });
 
 });
