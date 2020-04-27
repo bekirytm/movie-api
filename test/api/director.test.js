@@ -114,4 +114,21 @@ describe('/api/directors tests' , () => {
        });
     });
 
+
+    // DELETE İşlemi Testi
+    describe('/DELETE/:director_id  director test' , () => {
+       it('it should DELETE a director given by id' , (done) => {
+
+           chai.request(server)
+               .delete('/api/directors/' + director_id_test)
+               .set('x-access-token' , token)
+               .end((err,res) => {
+                  res.should.have.status(200);
+                  res.body.should.have.property('status').eql(1);
+
+                  done();
+               });
+       });
+    });
+
 });
