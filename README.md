@@ -1,3 +1,5 @@
+[![Build Status](https://api.travis-ci.com/bekirytm/movie-api.svg)](https://travis-ci.com/github/bekirytm/movie-api)
+
 # Movie-API (Restful API)
 
 
