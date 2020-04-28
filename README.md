@@ -1,5 +1,4 @@
-# Movie-API (Bir kurs projesidir.)
-
+# Movie-API (Restful API)
 
 
 
@@ -36,6 +35,6 @@
 
 # Demo
 
-Soon ...
+https://movie-api-node-js.herokuapp.com
 
 enjoy!
