@@ -91,7 +91,7 @@ describe('/api/movies tests ' , () => {
     });
 
 
-    // PUT işlemi testleri :
+    // (Güncelleme) PUT işlemi testleri :
     describe('/PUT/movie_id movie test' , () => {
         it('it should UPDATE a movie given by id' , (done)=> {
             const movie = {
@@ -125,7 +125,7 @@ describe('/api/movies tests ' , () => {
     });
 
 
-    // DELETE işlemi testi :
+    // (Silme) DELETE işlemi testi :
     describe('/DELETE/movie_id movie test' , () => {
         it('it should DELETE a movie given by id' , (done)=> {
 
