@@ -8,10 +8,11 @@ module.exports = () => {
       console.log("MongoDB :  Connected");
   });
 
+
   mongoose.connection.on('error' , (err) => {
       console.log("MongoDB : ERROR " , err);
   });
 
-  // Buradaki yapının nedeni rout işlemlerimizden dönen verileri promise ile kullanabilmek.
+  // Buradaki yapının nedeni route işlemlerimizden dönen verileri promise ile kullanabilmek.
   mongoose.Promise = global.Promise;
 };

@@ -12,7 +12,7 @@ const User = require('../models/User');
 
 
 router.get('/' , (req,res,next) => {
-  res.render('index' , { title: 'Express' });
+  res.render('index' , { title: 'Express DENEME' });
 });
 
 
